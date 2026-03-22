@@ -25,7 +25,6 @@ export default function ClientTable() {
 
   return (
     <>
-      <div className="pb-1">
       <Card noPadding>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -89,9 +88,8 @@ export default function ClientTable() {
           </table>
         </div>
       </Card>
-      </div>
       {totalPages > 1 && (
-        <div className="bg-[#F9F6F0] pt-4 pb-2 -mx-1 px-1">
+        <div className="bg-[#F9F6F0] pt-3 pb-2 -mx-1 px-1">
           <div className="flex items-center justify-between px-2">
             <div className="text-sm text-gray-500">
               Showing {start + 1}-{Math.min(end, users.length)} of {users.length} entities
