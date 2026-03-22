@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Check, User, Mail, BarChart, Pencil, X, Calendar } from 'lucide-react';
+import { ArrowLeft, Save, Building2, Mail, CreditCard, Pencil, X, Calendar } from 'lucide-react';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import { useApp } from '../context/AppContext';
@@ -22,7 +22,7 @@ export default function UserDetail() {
   if (!user) {
     return (
       <div className="space-y-6">
-        <button onClick={() => navigate('/')} className="flex items-center text-gray-500 hover:text-[#57288F] transition-colors group">
+        <button onClick={() => navigate('/')} className="flex items-center text-gray-500 hover:text-[#57288F] transition-colors group cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Dashboard
         </button>
         <p className="text-gray-600">User not found.</p>
@@ -68,7 +68,7 @@ export default function UserDetail() {
     <div className="space-y-6">
       <button
         onClick={() => navigate('/')}
-        className="flex items-center text-gray-500 hover:text-[#57288F] transition-colors group"
+        className="flex items-center text-gray-500 hover:text-[#57288F] transition-colors group cursor-pointer"
       >
         <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
         Back to Dashboard
@@ -84,8 +84,8 @@ export default function UserDetail() {
             <span>Joined {new Date(user.joinDate).toLocaleDateString()}</span>
           </div>
         </div>
-        <Button variant="success" loading={saving} onClick={handleSave} className="shadow-md hover:shadow-lg">
-          <Check className="w-4 h-4 mr-2" />
+        <Button variant="success" loading={saving} onClick={handleSave} className="shadow-md hover:shadow-lg cursor-pointer">
+          <Save className="w-4 h-4 mr-2" />
           Save Changes
         </Button>
       </div>
@@ -123,7 +123,7 @@ export default function UserDetail() {
           {/* Contact Details */}
           <Card>
             <h3 className="text-sm font-medium text-gray-500 mb-4 flex items-center">
-              <User className="w-4 h-4 mr-2" /> Contact Details
+              <Building2 className="w-4 h-4 mr-2" /> Contact Details
             </h3>
             <div className="space-y-3">
               <div>
@@ -140,9 +140,9 @@ export default function UserDetail() {
           <Card className={`transition-all duration-300 ${editing ? 'ring-2 ring-[#57288F]/20 shadow-md' : ''}`}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-medium text-gray-500 flex items-center">
-                <BarChart className="w-4 h-4 mr-2" /> Financial Overview
+                <CreditCard className="w-4 h-4 mr-2" /> Financial Overview
               </h3>
-              <Button variant="ghost" onClick={editing ? cancelEditing : startEditing} className="h-8 px-2 text-xs">
+              <Button variant="ghost" onClick={editing ? cancelEditing : startEditing} className="h-8 px-2 text-xs cursor-pointer">
                 {editing ? (
                   <span className="flex items-center text-gray-500">
                     <X className="w-3 h-3 mr-1" /> Cancel
