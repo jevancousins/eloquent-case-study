@@ -24,7 +24,7 @@ export default function ClientTable() {
   const pageUsers = users.slice(start, end);
 
   return (
-    <>
+    <div className="space-y-4">
       <Card noPadding>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -128,6 +128,6 @@ export default function ClientTable() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
