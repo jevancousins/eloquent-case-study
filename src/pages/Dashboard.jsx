@@ -3,7 +3,7 @@ import ClientTable from '../components/ClientTable';
 export default function Dashboard() {
   return (
     <div className="space-y-6">
-      <header className="mb-2">
+      <header>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Eloquent Case Study</h1>
       </header>
       <section>
