@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import Card from './Card';
 import { useApp } from '../context/AppContext';
 import { getUserStats } from '../utils/stats';
+
+const ROW_HEIGHT = 57;
+const FOOTER_HEIGHT = 52;
+const PADDING = 24;
+const MIN_ROWS = 3;
 
 const segmentStyles = {
   Enterprise: 'bg-purple-100 text-purple-800',
@@ -16,7 +21,30 @@ export default function ClientTable() {
   const { users, transactions } = useApp();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  const pageSize = 12;
+  const [pageSize, setPageSize] = useState(10);
+  const tbodyRef = useRef(null);
+
+  const calculatePageSize = useCallback(() => {
+    if (!tbodyRef.current) return;
+    const tableTop = tbodyRef.current.getBoundingClientRect().top;
+    const availableHeight = window.innerHeight - tableTop - FOOTER_HEIGHT - PADDING;
+    const rows = Math.max(MIN_ROWS, Math.floor(availableHeight / ROW_HEIGHT));
+    setPageSize(rows);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(calculatePageSize, 50);
+    window.addEventListener('resize', calculatePageSize);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener('resize', calculatePageSize);
+    };
+  }, [calculatePageSize]);
+
+  useEffect(() => {
+    const maxPage = Math.ceil(users.length / pageSize);
+    if (page > maxPage) setPage(1);
+  }, [pageSize, users.length, page]);
 
   const totalPages = Math.ceil(users.length / pageSize);
   const start = (page - 1) * pageSize;
@@ -40,7 +68,7 @@ export default function ClientTable() {
                 <th className="px-6 py-4"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody ref={tbodyRef} className="divide-y divide-gray-50">
               {pageUsers.map((user) => {
                 const stats = getUserStats(user, transactions);
                 return (
