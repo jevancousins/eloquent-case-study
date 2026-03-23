@@ -126,7 +126,7 @@ export default function ClientTable() {
               <button
                 onClick={() => setPage(p => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="p-2 rounded-lg bg-white shadow-sm border border-gray-100 text-gray-600 hover:bg-gray-50 hover:shadow-md transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:shadow-sm"
+                className="p-2 rounded-lg bg-white shadow-xs border border-gray-100 text-gray-600 hover:bg-gray-50 hover:shadow-md transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:shadow-xs"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -138,7 +138,7 @@ export default function ClientTable() {
                     className={`min-w-[2.5rem] px-3 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                       p === page
                         ? 'bg-[#57288F] text-white shadow-md'
-                        : 'bg-white text-gray-600 shadow-sm border border-gray-100 hover:bg-gray-50 hover:shadow-md'
+                        : 'bg-white text-gray-600 shadow-xs border border-gray-100 hover:bg-gray-50 hover:shadow-md'
                     }`}
                   >
                     {p}
@@ -148,7 +148,7 @@ export default function ClientTable() {
               <button
                 onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
-                className="p-2 rounded-lg bg-white shadow-sm border border-gray-100 text-gray-600 hover:bg-gray-50 hover:shadow-md transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:shadow-sm"
+                className="p-2 rounded-lg bg-white shadow-xs border border-gray-100 text-gray-600 hover:bg-gray-50 hover:shadow-md transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:shadow-xs"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>

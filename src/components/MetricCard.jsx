@@ -25,7 +25,7 @@ export default function MetricCard({ title, value, subtitle, icon: Icon, trend }
           )}
           <span className="text-2xl font-bold text-[#57288F]">{displayValue}</span>
         </div>
-        {subtitle && <p className="text-xs text-gray-500 leading-relaxed">{subtitle}</p>}
+        {subtitle && <p className="text-xs text-gray-400 leading-relaxed">{subtitle}</p>}
       </div>
     </Card>
   );
